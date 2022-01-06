@@ -34,6 +34,8 @@ namespace Quiz.api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors();
+            //Inject AppSettings
+            services.Configure<ApplicationSettings>(Configuration.GetSection("ApplicationSettings"));
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
