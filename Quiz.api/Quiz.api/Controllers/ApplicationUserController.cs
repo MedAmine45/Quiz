@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Quiz.api.Models;
 using System;
@@ -19,11 +20,13 @@ namespace Quiz.api.Controllers
     {
         private UserManager<User> _userManager;
         private SignInManager<User> _singInManager;
+        private readonly ApplicationSettings _appSettings;
 
-        public ApplicationUserController(UserManager<User> userManager, SignInManager<User> signInManager)
+        public ApplicationUserController(UserManager<User> userManager, SignInManager<User> signInManager , IOptions<ApplicationSettings> appSettings)
         {
             _userManager = userManager;
             _singInManager = signInManager;
+            _appSettings = appSettings.Value;
         }
         [HttpPost]
         [Route("Register")]
@@ -64,7 +67,7 @@ namespace Quiz.api.Controllers
                         new Claim("UserID", user.Id.ToString())
                     }),
                     Expires = DateTime.UtcNow.AddMinutes(5),
-                    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes("1234567890123456")), SecurityAlgorithms.HmacSha256Signature)
+                    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_appSettings.JWT_Secret)), SecurityAlgorithms.HmacSha256Signature)
 
                 };
                 var tokenHandler = new JwtSecurityTokenHandler();
