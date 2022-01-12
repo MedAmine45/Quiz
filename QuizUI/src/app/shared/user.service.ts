@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { environment } from 'src/environments/environment';
@@ -45,7 +45,8 @@ export class UserService {
     return this.http.post(environment.BaseURI + '/ApplicationUser/Login', formData);
   }
   getUserProfile() {
-    return this.http.get(environment.BaseURI + '/UserProfile');
+    var tokenHeader = new HttpHeaders({'Authorization':'Bearer' + localStorage.getItem('token')})
+    return this.http.get(environment.BaseURI + '/UserProfile',{headers: tokenHeader});
   }
 
 

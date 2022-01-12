@@ -40,6 +40,36 @@ namespace Quiz.api
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Quiz.api", Version = "v1" });
+                //var security = new Dictionary<string, IEnumerable<string>>
+                //{
+                //    { "Bearer",new string[] { }},
+                //};
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    In = ParameterLocation.Header,
+                    Description = "JWT Authorization header using the bearer scheme Example: \"Authorization: Bearer {token}\"",
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.ApiKey,
+                    BearerFormat = "JWT",
+                    Scheme = "bearer"
+                });
+
+                //var security = new Dictionary<string, IEnumerable<string>>
+                //{
+                //    { "Bearer",new string[] { }},
+                //};
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement{
+                    {
+                    new OpenApiSecurityScheme{
+                        Reference = new OpenApiReference
+                        {
+                            Type = ReferenceType.SecurityScheme,
+                            Id = "Bearer"
+                        }
+                    } ,
+                    new string[]{}
+                    }
+                });
             });
 
             services.AddDbContext<QuizContext>(options =>
@@ -99,7 +129,7 @@ namespace Quiz.api
              .AllowAnyMethod()
 
              );
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
