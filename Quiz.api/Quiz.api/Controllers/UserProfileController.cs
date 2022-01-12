@@ -12,6 +12,7 @@ namespace Quiz.api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    //[Authorize]
     public class UserProfileController : ControllerBase
     {
         private UserManager<User> _userManager;
