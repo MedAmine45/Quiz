@@ -75,6 +75,7 @@ namespace Quiz.api
             services.AddDbContext<QuizContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("QuizConnection")));
             services.AddIdentity<User , IdentityRole>()
+                .AddRoles<IdentityRole>()
                     .AddEntityFrameworkStores<QuizContext>();
 
             services.Configure<IdentityOptions>(options =>

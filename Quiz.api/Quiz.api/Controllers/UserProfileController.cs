@@ -34,5 +34,27 @@ namespace Quiz.api.Controllers
                 user.UserName
             };
         }
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
+        [Route("ForAdmin")]
+        public string GetForAdmin()
+        {
+            return "Web method for Admin";
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Candidat")]
+        [Route("ForCandidat")]
+        public string GetCandidat()
+        {
+            return "Web method for Candidat";
+        }
+        [HttpGet]
+        [Authorize(Roles = "Admin,Candidat")]
+        [Route("ForAdminOrCandidat")]
+        public string GetForAdminOrCustomer()
+        {
+            return "Web method for Admin or Candidat";
+        }
     }
 }

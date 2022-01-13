@@ -33,6 +33,7 @@ namespace Quiz.api.Controllers
         //POST : /api/ApplicationUser/Register
         public async Task<Object> PostApplicationUser(ApplicationUserModel model)
         {
+            model.Role = "Admin";
             var User = new User()
             {
                 UserName = model.UserName,
@@ -43,6 +44,7 @@ namespace Quiz.api.Controllers
             try
             {
                 var result = await _userManager.CreateAsync(User, model.Password);
+                await _userManager.AddToRoleAsync(User, model.Role);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -61,10 +63,14 @@ namespace Quiz.api.Controllers
             var user = await _userManager.FindByNameAsync(model.UserName);
             if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
             {
+                //get role assigned to the user
+                var role = await _userManager.GetRolesAsync(user);
+                IdentityOptions _options = new IdentityOptions();
                 var tokenDescriptor = new SecurityTokenDescriptor
                 {
                     Subject = new ClaimsIdentity(new Claim[]{
-                        new Claim("UserID", user.Id.ToString())
+                        new Claim("UserID", user.Id.ToString()) ,
+                        new Claim(_options.ClaimsIdentity.RoleClaimType , role.FirstOrDefault())
                     }),
                     Expires = DateTime.UtcNow.AddDays(1),
                     SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_appSettings.JWT_Secret)), SecurityAlgorithms.HmacSha256Signature)
