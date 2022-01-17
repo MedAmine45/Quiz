@@ -3,7 +3,30 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.32002.261
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quiz.api", "Quiz.api\Quiz.api.csproj", "{816B5A17-DB50-4170-984B-46CC4A2D995B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Quiz.api", "Quiz.api\Quiz.api.csproj", "{816B5A17-DB50-4170-984B-46CC4A2D995B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{2A01232B-E1FE-4169-B5D9-F940E628BA97}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "QuizUI", "..\QuizUI\", "{AAFE9E3D-149E-4502-9478-907E7D4E637C}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_55888"
+		Debug.AspNetCompiler.PhysicalPath = "..\QuizUI\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_55888\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_55888"
+		Release.AspNetCompiler.PhysicalPath = "..\QuizUI\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_55888\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "55888"
+		SlnRelativePath = "..\QuizUI\"
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +38,16 @@ Global
 		{816B5A17-DB50-4170-984B-46CC4A2D995B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{816B5A17-DB50-4170-984B-46CC4A2D995B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{816B5A17-DB50-4170-984B-46CC4A2D995B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AAFE9E3D-149E-4502-9478-907E7D4E637C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AAFE9E3D-149E-4502-9478-907E7D4E637C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AAFE9E3D-149E-4502-9478-907E7D4E637C}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{AAFE9E3D-149E-4502-9478-907E7D4E637C}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{AAFE9E3D-149E-4502-9478-907E7D4E637C} = {2A01232B-E1FE-4169-B5D9-F940E628BA97}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F8BCA83E-AC13-42F6-9F90-68E647E15BDA}
