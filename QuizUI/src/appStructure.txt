@@ -9,6 +9,10 @@
 |   |  
 |   +--● home
 |   |  |--home.component.ts|.html
+|   +--● admin-panel
+|   |  |--admin-panel.component.ts|.html
+|   +--● forbidden
+|   |  |--forbidden.component.ts|.html
 |   |  
 |   +--● shared
 |   |  |--user.service.ts
