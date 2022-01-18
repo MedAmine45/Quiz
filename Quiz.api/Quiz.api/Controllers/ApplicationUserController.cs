@@ -63,7 +63,7 @@ namespace Quiz.api.Controllers
             var user = await _userManager.FindByNameAsync(model.UserName);
             if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
             {
-                //get role assigned to the user
+                //Get role assigned to the user
                 var role = await _userManager.GetRolesAsync(user);
                 IdentityOptions _options = new IdentityOptions();
                 var tokenDescriptor = new SecurityTokenDescriptor

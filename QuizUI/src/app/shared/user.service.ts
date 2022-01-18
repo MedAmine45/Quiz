@@ -7,8 +7,8 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class UserService {
-
-  constructor(private fb: FormBuilder, private http: HttpClient) { }
+  currentUser : any;
+  constructor(private fb: FormBuilder, private http: HttpClient ) { }
   formModel = this.fb.group({
     UserName: ['', Validators.required],
     Email: ['', Validators.email],
@@ -48,6 +48,56 @@ export class UserService {
     var tokenHeader = new HttpHeaders({'Authorization':'Bearer' + localStorage.getItem('token')})
     return this.http.get(environment.BaseURI + '/UserProfile',{headers: tokenHeader});
   }
+
+  roleMatch(allowedRoles : any): boolean {
+    var isMatch = false;
+    var payLoad = JSON.parse(window.atob(localStorage.getItem('token')!.split('.')[1]));
+    var userRole = payLoad.role;
+    // allowedRoles.forEach((element: any) => {
+    //   if (userRole == element) {
+    //     isMatch = true;
+    //     return false;
+    //   }
+    // });
+    return isMatch;
+  }
+
+  getUser(): any{
+    this.currentUser = this.getDataFromToken(localStorage.getItem('token'))
+  }
+  
+
+  // public GetToken(): any {
+  //   return this.storageService.retrieve('user_token');
+  // }
+  private getDataFromToken(token: any) {
+    let data = {};
+    if (typeof token !== 'undefined') {
+        const encoded = token.split('.')[1];
+        data = JSON.parse(this.urlBase64Decode(encoded));
+    }
+    return data;
+  }
+
+  
+  private urlBase64Decode(str: string) {
+    let output = str.replace('-', '+').replace('_', '/');
+    switch (output.length % 4) {
+        case 0:
+            break;
+        case 2:
+            output += '==';
+            break;
+        case 3:
+            output += '=';
+            break;
+        default:
+            throw 'Illegal base64url string!';
+    }
+
+    return window.atob(output);
+}
+  
 
 
 }
