@@ -14,6 +14,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { UserService } from './shared/user.service';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
+import { ForbiddenComponent } from './forbidden/forbidden.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { AdminPanelComponent } from './admin-panel/admin-panel.component';
     RegistrationComponent,
     LoginComponent,
     HomeComponent,
-    AdminPanelComponent
+    AdminPanelComponent,
+    ForbiddenComponent
   ],
   imports: [
     BrowserModule,
