@@ -2,7 +2,8 @@
     <a class="navbar-brand text-white">JWT Auth System</a>
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" routerLink="/adminpanel" *ngIf="IsAdmim">Admin Panel</a>
+        <a class="nav-link" routerLink="/adminpanel">Admin Panel</a>
+        <!-- *ngIf="IsAdmim" -->
       </li>
     </ul>
     <button class="btn btn-danger my-2 my-sm-0" (click)="onLogout()">Logout</button>
