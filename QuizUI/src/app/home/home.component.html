@@ -2,7 +2,7 @@
     <a class="navbar-brand text-white">JWT Auth System</a>
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" routerLink="/adminpanel">Admin Panel</a>
+        <a class="nav-link" routerLink="/adminpanel" *ngIf="IsAdmim">Admin Panel</a>
         <!-- *ngIf="IsAdmim" -->
       </li>
     </ul>
